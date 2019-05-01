@@ -1,13 +1,50 @@
-import React, {Component} from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React, { Component } from "react";
+import "./App.css";
+import About from "./routing/About.js";
+import Home from "./routing/Home.js";
+import Login from "./routing/Login.js";
+import MyPage from "./routing/MyPage.js";
 
-function App() {
+import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+
+function TopBar() {
   return (
-    <div className="App">
-      <h1>TEST MORTEN FCK</h1>
-    </div>
+    <Router>
+      <div>
+        <ul className="header">
+          <li>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li>
+            <NavLink to="/mypage">My Page</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <form>
+              <label>
+                <input type="text" name="searchByCity" />
+              </label>
+              <input type="submit" value="Search" />
+            </form>
+          </li>
+        </ul>
+
+        <hr />
+
+        <Route exact path="/" component={Home} />
+        <Route path="/mypage" component={MyPage} />
+        <Route path="/login" component={Login} />
+        <Route path="/about" component={About} />
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default TopBar;
